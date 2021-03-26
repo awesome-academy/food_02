@@ -1,5 +1,6 @@
 package com.example.gfood.data.source.remote.fetchjson
 
+import com.example.gfood.data.model.CategoryEntry
 import com.example.gfood.utils.KeyEntity
 import org.json.JSONArray
 import org.json.JSONException
@@ -33,10 +34,10 @@ class ParseDataWithJson {
         return stringBuffer.toString()
     }
 
-    fun parseJsonToData(jsonArray: JSONArray, keyEntity: KeyEntity): Any {
+    private fun parseJsonToData(jsonArray: JSONArray, keyEntity: KeyEntity): Any {
         val data = mutableListOf<Any>()
         try {
-            for (i in 0 until (jsonArray?.length() ?: 0)) {
+            for (i in 0 until (jsonArray.length() ?: 0)) {
                 val jsonObjects = jsonArray.getJSONObject(i)
                 val item = ParseDataWithJson().parseJsonToObject(jsonObjects, keyEntity)
                 item?.let { data.add(it) }
@@ -59,16 +60,23 @@ class ParseDataWithJson {
         }
         return null
     }
+
     fun parseJson(jsonString: String, keyEntity: KeyEntity): Any? =
-            try {
-                when(keyEntity){
-                    else -> null
+        try {
+            when (keyEntity) {
+                KeyEntity.CATEGORY -> {
+                    parseJsonToData(
+                        jsonArray = JSONObject(jsonString).getJSONArray(CategoryEntry.CATEGORY),
+                        keyEntity
+                    )
                 }
+                else -> null
             }
-            catch (e: Exception){
-                e.printStackTrace()
-                null
-            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+
     companion object {
         private const val TIME_OUT = 10000
         private val REST_GET: String = "GET"

@@ -7,8 +7,8 @@ import java.lang.Exception
 
 @Suppress("DEPRECATION", "UNCHECKED_CAST")
 class GetJsonFromUrl<T> constructor(
-        private val listener: OnFetchDataJsonListener<T>,
-        private val keyEntity: KeyEntity
+    private val keyEntity: KeyEntity,
+    private val listener: OnFetchDataJsonListener<T>
 ) : AsyncTask<String?, Unit?, String?>() {
     private var exception: Exception? = null
 

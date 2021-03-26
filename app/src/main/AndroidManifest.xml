@@ -10,7 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GFOOD">
+<<<<<<< HEAD
         <activity android:name=".MainActivity"
+=======
+        <activity android:name=".screen.main.MainActivity"
+>>>>>>> ae4225c29d2b2c5af6ee17dca3315d06b567707b
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
