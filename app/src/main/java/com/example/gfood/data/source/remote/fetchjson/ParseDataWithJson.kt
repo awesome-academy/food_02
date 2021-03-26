@@ -3,7 +3,6 @@ package com.example.gfood.data.source.remote.fetchjson
 import com.example.gfood.data.model.CategoryEntry
 import com.example.gfood.utils.KeyEntity
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -49,16 +48,13 @@ class ParseDataWithJson {
     }
 
     private fun parseJsonToObject(jsonObject: JSONObject, keyEntity: KeyEntity): Any? {
-        try {
-            jsonObject.let {
-                when (keyEntity) {
-                    else -> null
-                }
+        val parseJson = ParseJson()
+        return when (keyEntity) {
+            KeyEntity.CATEGORY -> {
+                parseJson.parseJsonToCategory(jsonObject = jsonObject)
             }
-        } catch (e: JSONException) {
-            e.printStackTrace()
+            else -> null
         }
-        return null
     }
 
     fun parseJson(jsonString: String, keyEntity: KeyEntity): Any? =

@@ -12,12 +12,14 @@ class CategoryRepository private constructor(private val remote: CategoryDataSou
     }
 
     companion object {
+
         private var instance: CategoryRepository? = null
 
-        fun getInstance(): CategoryRepository? {
-            return instance ?: CategoryRepository(CategoryRemoteDataSource.getInstances()).also {
-                instance = it
-            }
+        fun getInstance(): CategoryRepository {
+            return instance
+                ?: CategoryRepository(remote = CategoryRemoteDataSource.getInstances()).also {
+                    instance = it
+                }
         }
     }
 }
