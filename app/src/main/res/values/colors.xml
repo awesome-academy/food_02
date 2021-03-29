@@ -5,4 +5,9 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="color_08BECA">#08BECA</color>
+    <color name="color_FFCCCCCC">#FFCCCCCC</color>
+    <color name="color_FACE4C">#FACE4C</color>
+    <color name="color_white_ffffff">#ffffff</color>
+    <color name="color_A1F4FA">#3308BECA</color>
 </resources>

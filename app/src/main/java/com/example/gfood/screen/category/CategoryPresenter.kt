@@ -5,9 +5,9 @@ import com.example.gfood.data.source.remote.OnFetchDataJsonListener
 import com.example.gfood.data.source.repository.CategoryRepository
 import java.lang.Exception
 
-class CategoryPresenter(private val repository: CategoryRepository) : ContractCategory.Presenter {
+class CategoryPresenter(private val repository: CategoryRepository) : CategoryContract.Presenter {
 
-    private var view: ContractCategory.View? = null
+    private var view: CategoryContract.View? = null
 
     override fun getCategory() {
         repository.getCategory(object : OnFetchDataJsonListener<MutableList<Category>> {
@@ -27,7 +27,7 @@ class CategoryPresenter(private val repository: CategoryRepository) : ContractCa
 
     override fun onStop() = Unit
 
-    override fun setView(view: ContractCategory.View?) {
+    override fun setView(view: CategoryContract.View?) {
         this.view = view
     }
 }
