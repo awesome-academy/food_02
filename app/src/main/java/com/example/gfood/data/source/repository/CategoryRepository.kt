@@ -2,7 +2,6 @@ package com.example.gfood.data.source.repository
 
 import com.example.gfood.data.model.Category
 import com.example.gfood.data.source.CategoryDataSource
-import com.example.gfood.data.source.remote.CategoryRemoteDataSource
 import com.example.gfood.data.source.remote.OnFetchDataJsonListener
 
 class CategoryRepository private constructor(private val remote: CategoryDataSource.Remote) {
@@ -14,8 +13,8 @@ class CategoryRepository private constructor(private val remote: CategoryDataSou
     companion object {
         private var instance: CategoryRepository? = null
 
-        fun getInstance(): CategoryRepository? {
-            return instance ?: CategoryRepository(CategoryRemoteDataSource.getInstances()).also {
+        fun getInstance(remote: CategoryDataSource.Remote): CategoryRepository {
+            return instance ?: CategoryRepository(remote).also {
                 instance = it
             }
         }
