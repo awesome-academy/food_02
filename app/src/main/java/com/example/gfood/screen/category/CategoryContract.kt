@@ -4,7 +4,7 @@ import com.example.gfood.data.model.Category
 import com.example.gfood.utils.BasePresenter
 import java.lang.Exception
 
-interface ContractCategory {
+interface CategoryContract {
 
     interface View {
         fun onGetCategorySuccess(categories: MutableList<Category>)
