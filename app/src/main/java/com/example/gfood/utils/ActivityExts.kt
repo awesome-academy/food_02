@@ -11,7 +11,6 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
         commit()
     }
 }
-
 fun AppCompatActivity.addFragment(fragment: Fragment, id: Int) {
     supportFragmentManager.inTransaction {
         add(id, fragment)
