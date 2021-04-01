@@ -6,14 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gfood.R
 import com.example.gfood.data.model.Category
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoryAdapter(
+        private val onItemClickListener: (Category) -> Unit
+) : RecyclerView.Adapter<CategoryViewHolder>() {
 
     private val categories = mutableListOf<Category>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_layout_category, parent, false)
-        return CategoryViewHolder(view)
+        return CategoryViewHolder(view, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {

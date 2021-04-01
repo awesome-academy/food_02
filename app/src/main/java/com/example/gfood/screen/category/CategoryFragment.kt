@@ -1,22 +1,31 @@
 package com.example.gfood.screen.category
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gfood.R
 import com.example.gfood.data.model.Category
 import com.example.gfood.data.source.remote.CategoryRemoteDataSource
 import com.example.gfood.data.source.repository.CategoryRepository
 import com.example.gfood.screen.category.adapter.CategoryAdapter
+import com.example.gfood.screen.listmeal.ListMealFragment
+import com.example.gfood.utils.addFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_category.*
-import java.lang.Exception
 
 class CategoryFragment : CategoryContract.View, Fragment() {
 
-    private val categoryAdapter by lazy { CategoryAdapter() }
+    private val categoryAdapter by lazy {
+        CategoryAdapter() {
+            addFragment(
+                ListMealFragment.newInstance(it),
+                R.id.containerLayout
+            )
+        }
+    }
     private val categoryPresenter: CategoryContract.Presenter by lazy {
         CategoryPresenter(
             CategoryRepository.getInstance(

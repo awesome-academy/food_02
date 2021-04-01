@@ -7,7 +7,10 @@ import com.example.gfood.utils.loadImage
 import kotlinx.android.synthetic.main.item_layout_category.view.textViewCategory
 import kotlinx.android.synthetic.main.item_layout_category.view.imageCategory
 
-class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CategoryViewHolder(
+        itemView: View,
+        private val onItemClickListener: (Category) -> Unit
+) : RecyclerView.ViewHolder(itemView) {
 
     fun bindViewData(category: Category) {
         itemView.apply {
@@ -15,6 +18,9 @@ class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             imageCategory.loadImage(
                 category.image.toString()
             )
+            setOnClickListener {
+                onItemClickListener(category)
+            }
         }
     }
 }
