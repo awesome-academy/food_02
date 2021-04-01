@@ -1,5 +1,6 @@
 package com.example.gfood.utils
 
 enum class KeyEntity {
-    CATEGORY
+    CATEGORY,
+    LIST_MEALS
 }

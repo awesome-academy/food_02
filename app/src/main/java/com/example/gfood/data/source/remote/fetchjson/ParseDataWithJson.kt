@@ -1,12 +1,12 @@
 package com.example.gfood.data.source.remote.fetchjson
 
 import com.example.gfood.data.model.CategoryEntry
+import com.example.gfood.data.model.MealEntry
 import com.example.gfood.utils.KeyEntity
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -53,6 +53,9 @@ class ParseDataWithJson {
             KeyEntity.CATEGORY -> {
                 parseJson.parseJsonToCategory(jsonObject = jsonObject)
             }
+            KeyEntity.LIST_MEALS -> {
+                parseJson.parseJsonToMeal(jsonObject = jsonObject)
+            }
             else -> null
         }
     }
@@ -63,6 +66,13 @@ class ParseDataWithJson {
                 KeyEntity.CATEGORY -> {
                     parseJsonToData(
                         jsonArray = JSONObject(jsonString).getJSONArray(CategoryEntry.CATEGORY),
+                        keyEntity
+                    )
+                }
+                KeyEntity.LIST_MEALS -> {
+                    parseJsonToData(
+                        jsonArray = JSONObject(jsonString)
+                            .getJSONArray(MealEntry.MEAL),
                         keyEntity
                     )
                 }
