@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">G FOOD</string>
     <string name="title_category">Category</string>
+    <string name="title_list">List Meals</string>
 </resources>
