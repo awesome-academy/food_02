@@ -13,13 +13,16 @@ import com.example.gfood.data.source.repository.ListMealRepository
 import com.example.gfood.screen.listmeal.adapter.ListMealAdapter
 import com.example.gfood.screen.listmeals.ListMealConstract
 import com.example.gfood.screen.main.MainActivity
+import com.example.gfood.screen.mealdetail.MealDetailActivity
 import com.example.gfood.utils.loadImage
 import kotlinx.android.synthetic.main.fragment_list_meal.*
 
 class ListMealFragment : Fragment(), ListMealConstract.View {
 
     private val listMealAdapter by lazy {
-        ListMealAdapter()
+        ListMealAdapter() {
+            startActivity(MealDetailActivity.newIntent(context, it))
+        }
     }
     private var presenter: ListMealPresenter? = null
     private var category: Category? = null

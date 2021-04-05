@@ -6,7 +6,10 @@ import com.example.gfood.data.model.Meal
 import com.example.gfood.utils.loadImage
 import kotlinx.android.synthetic.main.item_layout_listmeal.view.*
 
-class ListMealHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ListMealHolder(
+    itemView: View,
+    private var itemListener: (Meal) -> Unit
+) : RecyclerView.ViewHolder(itemView) {
 
     fun bindViewData(meal: Meal) {
         itemView.apply {
@@ -14,6 +17,9 @@ class ListMealHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             imageMeal.loadImage(
                 meal.image.toString()
             )
+            setOnClickListener {
+                itemListener(meal)
+            }
         }
     }
 }
