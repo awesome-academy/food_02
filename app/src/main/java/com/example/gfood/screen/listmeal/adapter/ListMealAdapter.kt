@@ -6,14 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gfood.R
 import com.example.gfood.data.model.Meal
 
-class ListMealAdapter() : RecyclerView.Adapter<ListMealHolder>() {
+class ListMealAdapter(
+    private val onItemCLickListener: (Meal) -> Unit
+) : RecyclerView.Adapter<ListMealHolder>() {
 
     private val listMeals = mutableListOf<Meal>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListMealHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_layout_listmeal, parent, false)
-        return ListMealHolder(view)
+        return ListMealHolder(view, onItemCLickListener)
     }
 
     override fun onBindViewHolder(holder: ListMealHolder, position: Int) {
