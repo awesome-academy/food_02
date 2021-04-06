@@ -1,6 +1,7 @@
 package com.example.gfood.data.source.remote.fetchjson
 
 import com.example.gfood.data.model.CategoryEntry
+import com.example.gfood.data.model.MealDetailEntry
 import com.example.gfood.data.model.MealEntry
 import com.example.gfood.utils.KeyEntity
 import org.json.JSONArray
@@ -56,6 +57,9 @@ class ParseDataWithJson {
             KeyEntity.LIST_MEALS -> {
                 parseJson.parseJsonToMeal(jsonObject = jsonObject)
             }
+            KeyEntity.MEAL -> {
+                parseJson.parseJsonToMealDetail(jsonObject = jsonObject)
+            }
             else -> null
         }
     }
@@ -73,6 +77,13 @@ class ParseDataWithJson {
                     parseJsonToData(
                         jsonArray = JSONObject(jsonString)
                             .getJSONArray(MealEntry.MEAL),
+                        keyEntity
+                    )
+                }
+                KeyEntity.MEAL -> {
+                    parseJsonToData(
+                        jsonArray = JSONObject(jsonString)
+                            .getJSONArray(MealDetailEntry.MEAL_DETAIL),
                         keyEntity
                     )
                 }
