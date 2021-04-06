@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">G FOOD</string>
+    <string name="failed_to_delete">Failed to delete</string>
+    <string name="failed_to_select">Failed to select</string>
+    <string name="failed_to_save">Failed to save</string>
     <string name="title_category">Category</string>
     <string name="title_list">List Meals</string>
 </resources>
