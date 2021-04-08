@@ -6,5 +6,7 @@ object Constant {
     const val BASE_LIST_MEAL = "filter.php?c="
     const val BASE_MEAL = "lookup.php?i="
     const val BASE_URL_VIDEO = "https://www.youtube.com/watch?v="
+    const val BASE_URL_FILTER_BY_NAME= "search.php?s="
+    const val BASE_URL_FILTER_BY_INGREDIENT = "filter.php?i="
     const val LIMIT_OFFSET = 3
 }
