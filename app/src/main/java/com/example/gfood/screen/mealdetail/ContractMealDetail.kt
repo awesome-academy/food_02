@@ -20,8 +20,8 @@ interface ContractMealDetail {
     interface Presenter : BasePresenter<View> {
         fun getListMealDetails(id: String?)
         fun getMealFavourite()
-        fun onSaveMealFavourite(meal: Meal)
+        fun onSaveMealFavourite(meal: Meal?)
         fun onDeleteMealFavourite(idMeal: String?)
-        fun onGetMeal(idEntity: String?)
+        fun onGetMeal(idMeal: String?)
     }
 }

@@ -8,10 +8,10 @@ class MealFavouriteRepository(
     private val local: MealFavouriteDataSource.Local
 ) {
     fun save(
-        entity: Meal,
+        meal: Meal?,
         listener: OnFetchDataLocalListener<Long>
     ) {
-        local.save(entity, listener)
+        local.save(meal, listener)
     }
 
     fun getListMealFavourite(
@@ -21,17 +21,17 @@ class MealFavouriteRepository(
     }
 
     fun delete(
-        idEntity: String?,
+        idMeal: String?,
         listener: OnFetchDataLocalListener<Int>
     ) {
-        local.delete(idEntity, listener)
+        local.delete(idMeal, listener)
     }
 
     fun getMeal(
-        idEntity: String?,
+        idMeal: String?,
         listener: OnFetchDataLocalListener<Boolean>
     ) {
-        local.getMeal(idEntity, listener)
+        local.getMeal(idMeal, listener)
     }
 
     companion object {

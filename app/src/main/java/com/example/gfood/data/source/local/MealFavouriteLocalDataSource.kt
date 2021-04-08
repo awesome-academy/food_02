@@ -10,20 +10,20 @@ class MealFavouriteLocalDataSource private constructor(
     private val mealFavouriteDaoImpl: MealFavouriteDaoImpl
 ) : MealFavouriteDataSource.Local {
 
-    override fun save(entity: Meal, listener: OnFetchDataLocalListener<Long>) {
-        mealFavouriteDaoImpl.save(entity, listener)
+    override fun save(meal: Meal?, listener: OnFetchDataLocalListener<Long>) {
+        mealFavouriteDaoImpl.save(meal, listener)
     }
 
     override fun getListMealFavourite(listener: OnFetchDataLocalListener<MutableList<Meal>>) {
         mealFavouriteDaoImpl.getListMealFavourite(listener)
     }
 
-    override fun delete(idEntity: String?, listener: OnFetchDataLocalListener<Int>) {
-        mealFavouriteDaoImpl.delete(idEntity, listener)
+    override fun delete(idMeal: String?, listener: OnFetchDataLocalListener<Int>) {
+        mealFavouriteDaoImpl.delete(idMeal, listener)
     }
 
-    override fun getMeal(idEntity: String?, listener: OnFetchDataLocalListener<Boolean>) {
-        mealFavouriteDaoImpl.getMeal(idEntity, listener)
+    override fun getMeal(idMeal: String?, listener: OnFetchDataLocalListener<Boolean>) {
+        mealFavouriteDaoImpl.getMeal(idMeal, listener)
     }
 
     companion object {

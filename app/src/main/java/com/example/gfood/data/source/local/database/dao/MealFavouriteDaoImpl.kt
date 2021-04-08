@@ -13,14 +13,14 @@ class MealFavouriteDaoImpl private constructor(
 ) : MealFavouriteDao {
 
     override fun save(
-        entity: Meal,
+        meal: Meal?,
         listener: OnFetchDataLocalListener<Long>
     ) {
         var isSuccess: Long?
         val contentValue = ContentValues().apply {
-            put(MealFavouriteTable.COLUMN_ID_MEAL, entity.id)
-            put(MealFavouriteTable.COLUMN_IMAGE, entity.image)
-            put(MealFavouriteTable.COLUMN_NAME, entity.title)
+            put(MealFavouriteTable.COLUMN_ID_MEAL, meal?.id)
+            put(MealFavouriteTable.COLUMN_IMAGE, meal?.image)
+            put(MealFavouriteTable.COLUMN_NAME, meal?.title)
         }
         databaseHelper.writableDatabase.insert(
             MealFavouriteTable.TABLE_NAME,
@@ -67,13 +67,13 @@ class MealFavouriteDaoImpl private constructor(
     }
 
     override fun delete(
-        idEntity: String?,
+        idMeal: String?,
         listener: OnFetchDataLocalListener<Int>
     ) {
         databaseHelper.writableDatabase.delete(
             MealFavouriteTable.TABLE_NAME,
             "${MealFavouriteTable.COLUMN_ID_MEAL}=?",
-            arrayOf(idEntity)
+            arrayOf(idMeal)
         ).also {
             if (it > 0) listener.onSuccess(it)
             else listener.onFailed(R.string.failed_to_delete)
@@ -81,14 +81,14 @@ class MealFavouriteDaoImpl private constructor(
     }
 
     override fun getMeal(
-        idEntity: String?,
+        idMeal: String?,
         listener: OnFetchDataLocalListener<Boolean>
     ) {
         val cursor = databaseHelper.readableDatabase.query(
             MealFavouriteTable.TABLE_NAME,
             null,
             "${MealFavouriteTable.COLUMN_ID_MEAL}=?",
-            arrayOf(idEntity),
+            arrayOf(idMeal),
             null,
             null,
             null,
