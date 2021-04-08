@@ -60,6 +60,7 @@ class ParseDataWithJson {
             KeyEntity.MEAL -> {
                 parseJson.parseJsonToMealDetail(jsonObject = jsonObject)
             }
+
             else -> null
         }
     }
@@ -84,6 +85,13 @@ class ParseDataWithJson {
                     parseJsonToData(
                         jsonArray = JSONObject(jsonString)
                             .getJSONArray(MealDetailEntry.MEAL_DETAIL),
+                        keyEntity
+                    )
+                }
+                KeyEntity.FILTER -> {
+                    parseJsonToData(
+                        jsonArray = JSONObject(jsonString)
+                            .getJSONArray(MealEntry.MEAL),
                         keyEntity
                     )
                 }
