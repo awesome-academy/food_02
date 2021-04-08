@@ -39,7 +39,7 @@ class MealDetailPresenter(
         })
     }
 
-    override fun onSaveMealFavourite(meal: Meal) {
+    override fun onSaveMealFavourite(meal: Meal?) {
         repositoryLocal.save(meal, object : OnFetchDataLocalListener<Long> {
             override fun onSuccess(data: Long) {
                 view?.onSaveMealFavourite()
@@ -63,9 +63,9 @@ class MealDetailPresenter(
         })
     }
 
-    override fun onGetMeal(idEntity: String?) {
+    override fun onGetMeal(idMeal: String?) {
         repositoryLocal.getMeal(
-            idEntity,
+            idMeal,
             object : OnFetchDataLocalListener<Boolean> {
                 override fun onSuccess(data: Boolean) {
                     view?.onGetMeal(data)

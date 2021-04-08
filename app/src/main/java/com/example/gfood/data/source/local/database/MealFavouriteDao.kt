@@ -5,22 +5,11 @@ import com.example.gfood.data.source.local.OnFetchDataLocalListener
 
 interface MealFavouriteDao {
 
-    fun save(
-        entity: Meal,
-        listener: OnFetchDataLocalListener<Long>
-    )
+    fun save(meal: Meal?, listener: OnFetchDataLocalListener<Long>)
 
-    fun getListMealFavourite(
-        listener: OnFetchDataLocalListener<MutableList<Meal>>
-    )
+    fun getListMealFavourite(listener: OnFetchDataLocalListener<MutableList<Meal>>)
 
-    fun delete(
-        idEntity: String?,
-        listener: OnFetchDataLocalListener<Int>
-    )
+    fun delete(idMeal: String?, listener: OnFetchDataLocalListener<Int>)
 
-    fun getMeal(
-        idEntity: String?,
-        listener: OnFetchDataLocalListener<Boolean>
-    )
+    fun getMeal(idMeal: String?, listener: OnFetchDataLocalListener<Boolean>)
 }

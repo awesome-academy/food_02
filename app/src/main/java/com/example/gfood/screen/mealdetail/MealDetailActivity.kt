@@ -23,12 +23,15 @@ class MealDetailActivity : YouTubeBaseActivity(), ContractMealDetail.View {
     private var presenter: MealDetailPresenter? = null
     private var meal: Meal? = null
     private var mealDetail: MealDetail? = null
+    private var isStatusFavourite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meal_detail)
         meal = intent.getParcelableExtra(BUNDLE_MEAL) as Meal?
         initData()
+        onClickButtonFavourite()
+        onClickButtonShare()
     }
 
     @SuppressLint("SetTextI18n")
@@ -72,6 +75,32 @@ class MealDetailActivity : YouTubeBaseActivity(), ContractMealDetail.View {
         }
     }
 
+    private fun onClickButtonFavourite() {
+        buttonFavourite.setOnClickListener {
+            if (isStatusFavourite) {
+                presenter?.onDeleteMealFavourite(meal?.id)
+                buttonFavourite.setImageResource(R.drawable.ic_unfavourite)
+            } else {
+                presenter?.onSaveMealFavourite(meal)
+                buttonFavourite.setImageResource(R.drawable.ic_favourite)
+            }
+            isStatusFavourite = !isStatusFavourite
+        }
+    }
+
+    private fun onClickButtonShare() {
+        buttonShare.setOnClickListener {
+            startActivity(shareVideoIntent(mealDetail))
+        }
+    }
+
+    private fun shareVideoIntent(mealDetail: MealDetail?) =
+        Intent.createChooser(Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, mealDetail?.linkVideo)
+            type = TYPE_INTENT
+        }, getString(R.string.title_share))
+
     private fun showVideo(link: String?) {
         viewVideo.initialize(
             BuildConfig.KEY_YOUTUBE,
@@ -99,7 +128,8 @@ class MealDetailActivity : YouTubeBaseActivity(), ContractMealDetail.View {
         .split(Constant.BASE_URL_VIDEO)[1]
 
     companion object {
-        private const val BUNDLE_MEAL = "BUNDLE_MEAL"
+        const val BUNDLE_MEAL = "BUNDLE_MEAL"
+        const val TYPE_INTENT = "text/plain"
 
         fun newIntent(context: Context?, meal: Meal) =
             Intent(context, MealDetailActivity::class.java).apply {

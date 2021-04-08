@@ -28,7 +28,7 @@ class ParseJson {
         val listIngredient = mutableListOf<String>()
         for (n in 1..10) {
             jsonObject?.getString(MealDetailEntry.INGREDIENT + n)?.let {
-                if (it != null && it.isEmpty()) listIngredient.add(it)
+                if (!it.isNullOrEmpty()) listIngredient.add(it)
             }
         }
         return jsonObject.run {
